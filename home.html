@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Weather App</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+ 
+ <div style="height: 100vh; position: relative; background-color:#161616;">
+      <div style="position: absolute;top: 50%; left: 50%;transform: translate(-50%,-50%);">
+        <div class="card shadow bg-dark text-light" style="width:400px">
+          <div class="d-flex justify-content-center mt-5 mb-2" id="weather_icon">
+            <i class="fas fa-sun fa-3x" style="color: #eccc68"></i>            
+          </div>
+          <div class="card-body text-center">
+            <h4 class="card-title" id="location">{%location%},{%country%}</h4>
+            <p class="card-text" id="time"></p>
+            <h3 id="temp">{%temp%}&deg</h3>
+            <h5 id="temp_min_max">Min : {%temp_min%}&deg | Max : {%temp_max%}&deg </h5>
+          </div>
+        </div>
+    </div>
+ </div>
+ <script type="text/javascript">
+   let loc = document.getElementById("location");
+   let time = document.getElementById("time");
+   let weather_icon = document.getElementById("weather_icon");
+   console.log(time);
+
+   let weather_status = "{%status%}";
+
+   if(weather_status=="Sunny"){
+        weather_icon.innerHTML = "<i class='fas fa-sun fa-3x' style='color: #eccc68'></i>";
+   }else if(weather_status=="Clouds"){
+        weather_icon.innerHTML = "<i class='fas fa-cloud fa-3x' style='color: #eccc68'></i>";
+   }
+
+   const getCurrentDay = () => {
+      var weekday = new Array(7);
+      weekday[0] = "Sunday";
+      weekday[1] = "Monday";
+      weekday[2] = "Tuesday";
+      weekday[3] = "Wednesday";
+      weekday[4] = "Thursday";
+      weekday[5] = "Friday";
+      weekday[6] = "Saturday";
+
+      let currentTime = new Date();
+      let day = weekday[currentTime.getDay()];
+      return day;
+   };
+
+   // getCurrentDay();
+
+   const getCurrentTime = () =>{
+      var months = [
+        "Jan","Feb","Mar","Apr","May","June","Jul","Aug","Sep","Oct","Nov","Dec"
+      ];
+
+      var now = new Date();
+      var month = now.getMonth();
+      var day = now.getDate();
+
+      let hours = now.getHours();
+      let mins = now.getMinutes();
+
+      let period = "AM";
+
+      if(hours>=12){
+          period = "PM";
+          hours-=12;
+      }
+      if(mins<10){
+        mins = "0"+mins;
+      }
+      return `${day} ${months[month]} | ${hours}:${mins} ${period}`;
+   };
+
+   time.innerHTML = getCurrentDay() + "|" + getCurrentTime();
+   
+ </script>
+</body>
+</html>
