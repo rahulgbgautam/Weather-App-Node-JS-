@@ -1,2 +1,3 @@
 # Weather-App
-![Screenshot (227)](https://user-images.githubusercontent.com/47039082/138587937-d1ac10de-5f05-44ca-9753-aa125c5e6474.png)
+
+![Screenshot (229)](https://user-images.githubusercontent.com/47039082/138596487-636e4b5b-cef8-4f31-9499-c7c9e7dcd673.png)
